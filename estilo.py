@@ -309,17 +309,17 @@ def aplicar_estilo():
             padding: 3px 4px !important;
             gap: 2px !important;
             position: sticky !important;
-            top: 0 !important;
+            top: 3.2rem !important;
             z-index: 100 !important;
         }
         .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar { display: none !important; }
         .stTabs [data-baseweb="tab"] {
-            padding: 5px 9px !important;
-            font-size: 10px !important;
+            padding: 8px 12px !important;
+            font-size: 12px !important;
             white-space: nowrap !important;
             flex-shrink: 0 !important;
-            border-radius: 8px !important;
-            min-height: 28px !important;
+            border-radius: 10px !important;
+            min-height: 36px !important;
         }
 
         /* ── Métricas: grid 2 columnas ── */
@@ -490,8 +490,8 @@ def aplicar_estilo():
         .block-container { padding: 0.5rem 0.6rem 5rem !important; }
         h1 { font-size: 1.35rem !important; }
         .stTabs [data-baseweb="tab"] {
-            padding: 4px 8px !important;
-            font-size: 9px !important;
+            padding: 7px 10px !important;
+            font-size: 11px !important;
         }
         [data-testid="stMetricValue"] { font-size: 1.15rem !important; }
         .login-card { padding: 32px 18px !important; }
