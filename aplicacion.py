@@ -353,14 +353,15 @@ with tabs[0]:
     total_gast = gastos["importe"].sum()   if tiene_gast else 0
     balance    = total_ing - total_gast
 
-    c1, c2, c3, c4, c5 = st.columns(5)
+    c1, c2, c3 = st.columns(3)
     c1.metric("Ingresos totales",  f"${total_ing:,.0f}")
     c2.metric("Gastos totales",    f"${total_gast:,.0f}")
     c3.metric("Balance",           f"${balance:,.0f}",
               delta=f"${balance:+,.0f}",
               delta_color="normal")
-    c4.metric("Clientes",          len(clientes))
-    c5.metric("Servicios",         len(servicios))
+    c4, c5 = st.columns(2)
+    c4.metric("Clientes",  len(clientes))
+    c5.metric("Servicios", len(servicios))
 
     st.divider()
 
@@ -945,12 +946,11 @@ with tabs[4]:
         # ── Costos operativos ─────────────────────────────
         st.divider()
         st.subheader("Costos operativos")
-        oc1, oc2, oc3 = st.columns(3)
+        oc1, oc2 = st.columns(2)
         with oc1:
             costo_prof = st.number_input("Tiempo profesional ($)", min_value=0.0, step=500.0, key="op_prof")
-        with oc2:
             costo_cab  = st.number_input("Cabina ($)", min_value=0.0, step=500.0, key="op_cab")
-        with oc3:
+        with oc2:
             costo_cons = st.number_input("Consumibles ($)", min_value=0.0, step=500.0, key="op_cons")
 
         costo_operativo = costo_prof + costo_cab + costo_cons

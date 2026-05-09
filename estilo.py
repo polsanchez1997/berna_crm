@@ -278,139 +278,224 @@ def aplicar_estilo():
     /* ─── ALTAIR CHART ─── */
     .vega-embed { border-radius: 12px; }
 
-    /* ═══════════════════════════════════════════
-       MÓVIL  (≤ 768px)
-    ═══════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════════════════
+       MÓVIL  (≤ 768px)  —  diseño tipo app nativa
+    ═══════════════════════════════════════════════════════ */
     @media (max-width: 768px) {
 
-        /* ── Contenido principal más compacto ── */
+        /* ── Layout base ── */
         .block-container {
-            padding: 1rem 0.75rem 2rem !important;
+            padding: 0.6rem 0.8rem 5rem !important;
+            max-width: 100% !important;
         }
 
-        /* ── Títulos más pequeños ── */
-        h1 { font-size: 1.6rem !important; }
-        h2 { font-size: 1.3rem !important; }
-        h3 { font-size: 1.1rem !important; }
+        /* ── Tipografía ── */
+        h1 {
+            font-size: 1.55rem !important;
+            margin-bottom: 0.4rem !important;
+        }
+        h2 { font-size: 1.2rem !important; }
+        h3 { font-size: 1rem !important; }
+        p, label, .stMarkdown { font-size: 14px !important; }
 
-        /* ── Tabs: scroll horizontal en lugar de wrap ── */
+        /* ── Tabs: barra deslizable tipo app ── */
         .stTabs [data-baseweb="tab-list"] {
             flex-wrap: nowrap !important;
             overflow-x: auto !important;
             overflow-y: hidden !important;
             -webkit-overflow-scrolling: touch;
-            border-radius: 12px !important;
-            padding: 5px 6px !important;
-            gap: 3px !important;
-            scrollbar-width: none;
+            scrollbar-width: none !important;
+            border-radius: 14px !important;
+            padding: 5px !important;
+            gap: 2px !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 100 !important;
         }
-        .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar { display: none; }
+        .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar { display: none !important; }
         .stTabs [data-baseweb="tab"] {
-            padding: 7px 11px !important;
-            font-size: 11px !important;
+            padding: 8px 12px !important;
+            font-size: 12px !important;
             white-space: nowrap !important;
             flex-shrink: 0 !important;
+            border-radius: 10px !important;
+            min-height: 36px !important;
         }
 
-        /* ── Métricas: valor más pequeño ── */
+        /* ── Métricas: grid 2 columnas ── */
         [data-testid="stMetric"] {
-            padding: 12px 14px !important;
-            border-radius: 12px !important;
+            padding: 14px 12px !important;
+            border-radius: 14px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
         }
         [data-testid="stMetricValue"] {
-            font-size: 20px !important;
+            font-size: 1.3rem !important;
         }
         [data-testid="stMetricLabel"] {
-            font-size: 10px !important;
+            font-size: 9px !important;
+            letter-spacing: 0.4px !important;
+        }
+        [data-testid="stMetricDelta"] { font-size: 11px !important; }
+
+        /* ── Columnas: apilar verticalmente ── */
+        [data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 0 !important;
         }
 
-        /* ── Botones: ancho completo y más fáciles de tocar ── */
+        /* ── Botones: grandes, táctiles, ancho completo ── */
         .stButton > button {
             width: 100% !important;
-            padding: 14px 20px !important;
+            min-height: 50px !important;
+            padding: 13px 20px !important;
             font-size: 15px !important;
-            border-radius: 12px !important;
+            border-radius: 14px !important;
+            letter-spacing: 0.2px !important;
         }
         [data-testid="stFormSubmitButton"] > button {
             width: 100% !important;
-            padding: 14px 20px !important;
+            min-height: 50px !important;
+            padding: 13px 20px !important;
             font-size: 15px !important;
+            border-radius: 14px !important;
+        }
+        [data-testid="stDownloadButton"] > button {
+            width: 100% !important;
+            min-height: 44px !important;
+            font-size: 14px !important;
+            text-align: center !important;
         }
 
-        /* ── Inputs más grandes para el dedo ── */
+        /* ── Inputs: 16px evita zoom en iOS, área táctil grande ── */
         input[type="text"],
         input[type="password"],
         input[type="number"],
         textarea {
-            font-size: 16px !important;   /* evita zoom automático en iOS */
-            padding: 10px 12px !important;
-            min-height: 44px !important;
+            font-size: 16px !important;
+            min-height: 48px !important;
+            padding: 12px 14px !important;
+            border-radius: 12px !important;
         }
         div[data-baseweb="select"] > div {
-            min-height: 44px !important;
-            font-size: 15px !important;
+            min-height: 48px !important;
+            font-size: 16px !important;
+            border-radius: 12px !important;
+        }
+        [data-testid="stDateInput"] input {
+            min-height: 48px !important;
+            font-size: 16px !important;
         }
 
-        /* ── Login card ocupa todo el ancho ── */
-        .login-card {
-            padding: 36px 24px !important;
-            border-radius: 18px !important;
-            margin-top: 16px !important;
-        }
-        .login-card h2 { font-size: 28px !important; }
-
-        /* ── Expanders con padding reducido ── */
-        [data-testid="stExpander"] summary {
-            padding: 12px 14px !important;
-            font-size: 14px !important;
-        }
-
-        /* ── Dataframes scroll horizontal ── */
-        .stDataFrame {
-            overflow-x: auto !important;
-        }
-
-        /* ── Sidebar: oculta por defecto, se abre con el botón ─ */
-        /* Streamlit ya lo hace solo en móvil, esto refina el tamaño */
-        [data-testid="stSidebar"] {
-            min-width: 260px !important;
-            max-width: 85vw !important;
-        }
-
-        /* ── Número de columnas: forzar apilado ── */
-        [data-testid="column"] {
-            min-width: 100% !important;
-            flex: 1 1 100% !important;
-        }
-
-        /* ── Slider más fácil de arrastrar ── */
+        /* ── Slider: thumb más grande ── */
         [data-testid="stSlider"] [role="slider"] {
-            width: 22px !important;
-            height: 22px !important;
+            width: 26px !important;
+            height: 26px !important;
+            box-shadow: 0 2px 8px rgba(140,94,88,0.35) !important;
+        }
+        [data-testid="stSlider"] {
+            padding: 8px 0 !important;
         }
 
-        /* ── Checkbox más grande ── */
+        /* ── Checkbox: área táctil cómoda ── */
         [data-testid="stCheckbox"] label {
             font-size: 15px !important;
+            min-height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
             gap: 10px !important;
+            cursor: pointer !important;
         }
-        [data-testid="stCheckbox"] input {
-            width: 20px !important;
-            height: 20px !important;
+
+        /* ── Expanders: cabecera más grande ── */
+        [data-testid="stExpander"] {
+            border-radius: 16px !important;
+            margin-bottom: 8px !important;
+        }
+        [data-testid="stExpander"] summary {
+            padding: 16px 16px !important;
+            font-size: 14px !important;
+            min-height: 52px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        /* ── Dataframes: scroll horizontal suave ── */
+        .stDataFrame {
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+            border-radius: 14px !important;
+        }
+        .stDataFrame thead tr th {
+            font-size: 10px !important;
+            padding: 8px 10px !important;
+        }
+        .stDataFrame tbody tr td {
+            font-size: 12px !important;
+            padding: 8px 10px !important;
+        }
+
+        /* ── Sidebar ── */
+        [data-testid="stSidebar"] {
+            min-width: 280px !important;
+            max-width: 88vw !important;
+        }
+        [data-testid="stSidebar"] .block-container {
+            padding: 1.5rem 1rem 2rem !important;
+        }
+
+        /* ── Login card ── */
+        .login-card {
+            padding: 40px 24px !important;
+            border-radius: 22px !important;
+            margin-top: 10px !important;
+            box-shadow: 0 12px 40px rgba(140,94,88,0.12) !important;
+        }
+        .login-card h2 { font-size: 2rem !important; }
+
+        /* ── Alerts ── */
+        [data-testid="stAlert"] {
+            border-radius: 14px !important;
+            font-size: 13px !important;
+            padding: 12px 14px !important;
+        }
+
+        /* ── Separadores ── */
+        hr { margin: 0.8rem 0 !important; }
+
+        /* ── Número input: sin flechas (más limpio en móvil) ── */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+            height: 32px;
+        }
+
+        /* ── Quitar hover effects (no aplican en touch) ── */
+        [data-testid="stMetric"]:hover {
+            transform: none !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+        }
+        .stButton > button:hover {
+            transform: none !important;
+        }
+        [data-testid="stFormSubmitButton"] > button:hover {
+            transform: none !important;
         }
     }
 
-    /* ═══════════════════════════════════════════
-       MÓVIL PEQUEÑO  (≤ 400px)
-    ═══════════════════════════════════════════ */
-    @media (max-width: 400px) {
-        .block-container { padding: 0.75rem 0.5rem 2rem !important; }
-        h1 { font-size: 1.4rem !important; }
+    /* ═══════════════════════════════════════════════════════
+       MÓVIL PEQUEÑO  (≤ 390px)  —  iPhone SE / mini
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 390px) {
+        .block-container { padding: 0.5rem 0.6rem 5rem !important; }
+        h1 { font-size: 1.35rem !important; }
         .stTabs [data-baseweb="tab"] {
-            padding: 6px 9px !important;
-            font-size: 10px !important;
+            padding: 7px 10px !important;
+            font-size: 11px !important;
         }
-        [data-testid="stMetricValue"] { font-size: 18px !important; }
+        [data-testid="stMetricValue"] { font-size: 1.15rem !important; }
+        .login-card { padding: 32px 18px !important; }
+        .login-card h2 { font-size: 1.7rem !important; }
     }
 
     </style>
