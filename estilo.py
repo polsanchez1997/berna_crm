@@ -289,13 +289,43 @@ def aplicar_estilo():
             max-width: 100% !important;
         }
 
+        /* ── FORZAR COLOR DE TEXTO (fix Android Chrome) ── */
+        html, body, [class*="css"],
+        p, span, div, label, li,
+        .stMarkdown, .stMarkdown p,
+        .stText, .stCaption,
+        [data-testid="stMarkdownContainer"],
+        [data-testid="stMarkdownContainer"] p,
+        [data-testid="stMarkdownContainer"] span,
+        [data-testid="caption"],
+        .stTextInput label,
+        .stNumberInput label,
+        .stSelectbox label,
+        .stDateInput label,
+        .stSlider label,
+        .stCheckbox label,
+        .stRadio label,
+        [data-baseweb="form-control-label"] {
+            color: #2f2f2f !important;
+        }
+        /* Placeholders */
+        input::placeholder, textarea::placeholder {
+            color: #9c8c8c !important;
+            opacity: 1 !important;
+        }
+        /* Texto dentro de inputs */
+        input, textarea, select {
+            color: #2f2f2f !important;
+        }
+
         /* ── Tipografía ── */
         h1 {
             font-size: 1.55rem !important;
             margin-bottom: 0.4rem !important;
+            color: #2f2f2f !important;
         }
-        h2 { font-size: 1.2rem !important; }
-        h3 { font-size: 1rem !important; }
+        h2 { font-size: 1.2rem !important; color: #2f2f2f !important; }
+        h3 { font-size: 1rem !important;  color: #2f2f2f !important; }
         p, label, .stMarkdown { font-size: 14px !important; }
 
         /* ── Tabs: barra deslizable tipo app ── */
