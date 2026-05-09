@@ -1,0 +1,23 @@
+# Credenciales y secretos — NUNCA subir
+credenciales.json
+.streamlit/secrets.toml
+
+# Entorno virtual
+entorno/
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Streamlit cache local
+.streamlit/cache/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
