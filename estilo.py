@@ -278,5 +278,140 @@ def aplicar_estilo():
     /* ─── ALTAIR CHART ─── */
     .vega-embed { border-radius: 12px; }
 
+    /* ═══════════════════════════════════════════
+       MÓVIL  (≤ 768px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+        /* ── Contenido principal más compacto ── */
+        .block-container {
+            padding: 1rem 0.75rem 2rem !important;
+        }
+
+        /* ── Títulos más pequeños ── */
+        h1 { font-size: 1.6rem !important; }
+        h2 { font-size: 1.3rem !important; }
+        h3 { font-size: 1.1rem !important; }
+
+        /* ── Tabs: scroll horizontal en lugar de wrap ── */
+        .stTabs [data-baseweb="tab-list"] {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 12px !important;
+            padding: 5px 6px !important;
+            gap: 3px !important;
+            scrollbar-width: none;
+        }
+        .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar { display: none; }
+        .stTabs [data-baseweb="tab"] {
+            padding: 7px 11px !important;
+            font-size: 11px !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* ── Métricas: valor más pequeño ── */
+        [data-testid="stMetric"] {
+            padding: 12px 14px !important;
+            border-radius: 12px !important;
+        }
+        [data-testid="stMetricValue"] {
+            font-size: 20px !important;
+        }
+        [data-testid="stMetricLabel"] {
+            font-size: 10px !important;
+        }
+
+        /* ── Botones: ancho completo y más fáciles de tocar ── */
+        .stButton > button {
+            width: 100% !important;
+            padding: 14px 20px !important;
+            font-size: 15px !important;
+            border-radius: 12px !important;
+        }
+        [data-testid="stFormSubmitButton"] > button {
+            width: 100% !important;
+            padding: 14px 20px !important;
+            font-size: 15px !important;
+        }
+
+        /* ── Inputs más grandes para el dedo ── */
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        textarea {
+            font-size: 16px !important;   /* evita zoom automático en iOS */
+            padding: 10px 12px !important;
+            min-height: 44px !important;
+        }
+        div[data-baseweb="select"] > div {
+            min-height: 44px !important;
+            font-size: 15px !important;
+        }
+
+        /* ── Login card ocupa todo el ancho ── */
+        .login-card {
+            padding: 36px 24px !important;
+            border-radius: 18px !important;
+            margin-top: 16px !important;
+        }
+        .login-card h2 { font-size: 28px !important; }
+
+        /* ── Expanders con padding reducido ── */
+        [data-testid="stExpander"] summary {
+            padding: 12px 14px !important;
+            font-size: 14px !important;
+        }
+
+        /* ── Dataframes scroll horizontal ── */
+        .stDataFrame {
+            overflow-x: auto !important;
+        }
+
+        /* ── Sidebar: oculta por defecto, se abre con el botón ─ */
+        /* Streamlit ya lo hace solo en móvil, esto refina el tamaño */
+        [data-testid="stSidebar"] {
+            min-width: 260px !important;
+            max-width: 85vw !important;
+        }
+
+        /* ── Número de columnas: forzar apilado ── */
+        [data-testid="column"] {
+            min-width: 100% !important;
+            flex: 1 1 100% !important;
+        }
+
+        /* ── Slider más fácil de arrastrar ── */
+        [data-testid="stSlider"] [role="slider"] {
+            width: 22px !important;
+            height: 22px !important;
+        }
+
+        /* ── Checkbox más grande ── */
+        [data-testid="stCheckbox"] label {
+            font-size: 15px !important;
+            gap: 10px !important;
+        }
+        [data-testid="stCheckbox"] input {
+            width: 20px !important;
+            height: 20px !important;
+        }
+    }
+
+    /* ═══════════════════════════════════════════
+       MÓVIL PEQUEÑO  (≤ 400px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 400px) {
+        .block-container { padding: 0.75rem 0.5rem 2rem !important; }
+        h1 { font-size: 1.4rem !important; }
+        .stTabs [data-baseweb="tab"] {
+            padding: 6px 9px !important;
+            font-size: 10px !important;
+        }
+        [data-testid="stMetricValue"] { font-size: 18px !important; }
+    }
+
     </style>
     """, unsafe_allow_html=True)
