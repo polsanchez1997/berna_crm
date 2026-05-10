@@ -54,7 +54,12 @@ def aplicar_estilo():
         padding: 6px 8px;
         border-radius: 16px;
         border-bottom: none;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
+    .stTabs [data-baseweb="tab-list"]::-webkit-scrollbar { display: none; }
     .stTabs [data-baseweb="tab"] {
         border-radius: 10px;
         padding: 8px 16px;
@@ -64,6 +69,8 @@ def aplicar_estilo():
         background: transparent;
         border: none;
         transition: all 0.2s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
     .stTabs [aria-selected="true"] {
         background: var(--card) !important;
