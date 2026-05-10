@@ -164,6 +164,15 @@ for df_name, df_obj, col in [
 # HELPERS
 # =========================================================
 
+def fmt_cant(val):
+    """Muestra entero si es número entero (1.0 → '1'), decimal si no (1.5 → '1.5')."""
+    try:
+        f = float(val)
+        return str(int(f)) if f == int(f) else str(f)
+    except (TypeError, ValueError):
+        return str(val)
+
+
 def normalizar_margen(val):
     """Convierte 65 o 0.65 siempre a decimal (0.65)."""
     try:
@@ -336,7 +345,7 @@ with st.sidebar:
         if not bajo.empty:
             st.warning(f"⚠️ {len(bajo)} material(es) con stock bajo")
             for _, row in bajo.iterrows():
-                st.caption(f"• {row['nombre']}: {row['cantidad']} {row.get('unidad','')}")
+                st.caption(f"• {row['nombre']}: {fmt_cant(row['cantidad'])} {row.get('unidad','')}")
 
     st.divider()
     if st.button("🚪 Cerrar sesión", use_container_width=True):
@@ -926,7 +935,7 @@ with tabs[4]:
                         costo_materiales += subtotal
                         detalle_costos.append({
                             "Material":       mat_nombre,
-                            "Cantidad":       f"{cant} {mat_row.iloc[0].get('unidad', '')}".strip(),
+                            "Cantidad":       f"{fmt_cant(cant)} {mat_row.iloc[0].get('unidad', '')}".strip(),
                             "Costo unitario": f"${coste_u:,.4f}",
                             "Subtotal":       f"${subtotal:,.0f}",
                         })
