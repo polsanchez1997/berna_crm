@@ -132,14 +132,32 @@ else:
     servicios = pd.DataFrame()
 
 # ─── Normalizar numéricos ─────────────────────────────────
+def _to_float(val):
+    """Convierte a float tolerando coma decimal europea (1.349,39 o 1349,39)."""
+    if pd.isna(val):
+        return float("nan")
+    if isinstance(val, (int, float)):
+        return float(val)
+    s = str(val).strip().replace(" ", "").replace("\xa0", "")
+    if "," in s and "." in s:          # 1.349,39 → 1349.39
+        s = s.replace(".", "").replace(",", ".")
+    elif "," in s:                     # 1349,39  → 1349.39
+        s = s.replace(",", ".")
+    try:
+        return float(s)
+    except ValueError:
+        return float("nan")
+
 for df_name, df_obj, col in [
-    ("ingresos",  ingresos,  "monto"),
-    ("gastos",    gastos,    "importe"),
-    ("materiales",materiales,"coste_unitario"),
-    ("materiales",materiales,"cantidad"),
+    ("ingresos",   ingresos,   "monto"),
+    ("gastos",     gastos,     "importe"),
+    ("materiales", materiales, "coste_unitario"),
+    ("materiales", materiales, "cantidad"),
+    ("materiales", materiales, "precio_compra"),
+    ("costos_proc", costos_proc, "cantidad"),
 ]:
     if not df_obj.empty and col in df_obj.columns:
-        df_obj[col] = pd.to_numeric(df_obj[col], errors="coerce")
+        df_obj[col] = df_obj[col].apply(_to_float)
 
 
 # =========================================================
@@ -207,7 +225,7 @@ def descontar_stock(procedimiento_nombre):
                 None,
             )
             if fila:
-                actual = float(all_vals[fila - 1][col_cant] or 0)
+                actual = _to_float(all_vals[fila - 1][col_cant] or 0)
                 nuevo  = max(0.0, actual - cant_usar)
                 ws_mat.update_cell(fila, col_cant + 1, round(nuevo, 4))
                 ajustes.append({"material": mat_nombre, "usado": cant_usar, "restante": nuevo})
@@ -788,12 +806,12 @@ with tabs[3]:
                             )
                             if fil:
                                 col_cant = headers.index("cantidad") + 1
-                                actual   = float(all_vals[fil - 1][headers.index("cantidad")] or 0)
+                                actual   = _to_float(all_vals[fil - 1][headers.index("cantidad")] or 0)
                                 nuevo    = actual + cant_reponer
                                 ws.update_cell(fil, col_cant, nuevo)
 
                                 if precio_nuevo > 0 and "coste_unitario" in headers and "precio_compra" in headers:
-                                    old_coste    = float(all_vals[fil - 1][headers.index("coste_unitario")] or 0)
+                                    old_coste    = _to_float(all_vals[fil - 1][headers.index("coste_unitario")] or 0)
                                     old_total    = actual * old_coste
                                     nuevo_coste  = round((old_total + precio_nuevo) / nuevo, 4)
                                     ws.update_cell(fil, headers.index("coste_unitario") + 1, nuevo_coste)
